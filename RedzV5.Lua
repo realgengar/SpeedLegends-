@@ -1789,7 +1789,7 @@ end
 			Size = UDim2.new(1, TIcon and -25 or -15, 1),
 			Position = UDim2.fromOffset(TIcon and 25 or 15),
 			BackgroundTransparency = 1,
-			Font = Enum.Font.FredokaOne, --GothamMedium
+			Font = Enum.Font.BuilderSansBold, --GothamMedium
 			Text = TName,
 			TextColor3 = Theme["Color Text"],
 			TextSize = 10,
@@ -1900,10 +1900,10 @@ end
 				Text = SectionName,
 				TextColor3 = Theme["Color Dark Purple"],
 				Size = UDim2.new(1, -25, 1, 0),
-				Position = UDim2.new(0, 70),
+				Position = UDim2.new(0, 30),
 				BackgroundTransparency = 1,
 				TextTruncate = "AtEnd",
-				TextSize = 10,
+				TextSize = 11,
 				TextXAlignment = "Left"
 			}), "Text")
 			
@@ -1960,7 +1960,7 @@ end
 				Position = UDim2.new(1, -10, 0.5),
 				AnchorPoint = Vector2.new(1, 0.5),
 				BackgroundTransparency = 1,
-				Image = "rbxassetid://10734898476"
+				Image = "rbxassetid://10734973999"
 			})
 			
 			FButton.Activated:Connect(function()
